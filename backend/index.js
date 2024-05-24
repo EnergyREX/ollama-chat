@@ -1,7 +1,13 @@
-import ollama from 'ollama'
+import express from "express"
 
-const response = await ollama.generate({
-  model: 'llama3',
-  messages: [{ role: 'user', content: 'Why is the sky blue?' }],
-})
-console.log(response.message.content)
+const app = express();
+
+app.get('/', (req, res) => {
+    res.send('<h1>Hello World!</h1>')
+ })
+
+
+ const PORT = 5000;
+ app.listen(PORT, () => {
+    console.log(`Server running on ${PORT}`);
+ })
