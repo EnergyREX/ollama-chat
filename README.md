@@ -9,6 +9,8 @@ This project aims to create an UI layer for [Ollama](https://github.com/ollama/o
 - TypeScript
 - Express.js
 
-## Recommended hardware
+## Requisites
 
-Minimum of required RAM is 16GB, more is better, the best way is to have a dedicated machine running. 
+Minimum of required RAM is 16GB, more is better.
+A good CPU. In my case it was tested on AMD Ryzen 1800X.
+Have installed [Ollama](https://ollama.com/download) in your system. 
