@@ -37,6 +37,7 @@ function App() {
         <p>Select a model 
           <select name="models" onChange={handleModelChange}>
             <option value=""></option>
+            <option value="llama2">Llama 2</option>
             <option value="llama3">Llama 3</option>
             <option value="codellama">Codellama</option>
           </select>
