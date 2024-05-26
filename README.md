@@ -1,16 +1,8 @@
-# Ollama-chat
-## Description
+# React + Vite
 
-This project aims to create an UI layer for [Ollama](https://github.com/ollama/ollama). This proyect right now is **__Under development__**.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Built with
+Currently, two official plugins are available:
 
-- ReactJS
-- TypeScript
-- Express.js
-
-## Requisites
-
-Minimum of required RAM is 16GB, more is better.
-A good CPU. In my case it was tested on AMD Ryzen 1800X.
-Have installed [Ollama](https://ollama.com/download) in your system. 
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh

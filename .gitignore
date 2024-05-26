@@ -7,10 +7,6 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-frontend/package-lock.json
-backend/package-lock.json
-ANNOTATIONS.md
-
 node_modules
 dist
 dist-ssr
