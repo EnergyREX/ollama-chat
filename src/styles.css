@@ -1,0 +1,72 @@
+.config__header {
+    margin-bottom: 0px;
+}
+
+.config__subtitle {
+    margin-top: 0px;
+    font-weight: 400;
+}
+
+.config__select {
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.config__sysinput {
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.config__streamCheckbox {
+    width: 1rem;
+}
+
+.chat__input {
+    width: auto;
+    height: auto;
+
+    padding: 0.5rem;
+}
+
+.input__send {
+    padding: 0.5rem;
+    margin-left: 1rem;
+}
+
+/* Markdown */
+
+.markdown-content {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+  }
+  
+  .markdown-content h1 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+    color: #4A90E2;
+  }
+  
+  .markdown-content p {
+    margin-bottom: 1em;
+  }
+  
+  .markdown-content ul {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+  
+  code {
+    background-color: #161616;
+    padding: 0.3rem 0.3rem 0.3rem 0.3rem;
+    margin: 0.3rem 0.1rem 0.5rem 0.1rem;
+    border-radius: 2px;
+    color: #fff;
+  }
+  
+  pre {
+    background-color: #161616;
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+  }

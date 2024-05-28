@@ -2,7 +2,11 @@ import { useState } from 'react';
 import ollama from './services/ollama';
 import { marked } from 'marked';
 
+import Options from './components/Options';
+
 import './layout.css';
+import './styles.css'
+import { FaPaperPlane } from 'react-icons/fa6';
 
 function App() {
   const [model, setModel] = useState('llama3');
@@ -43,12 +47,12 @@ function App() {
   return (
     <main>
       <section className='config__section'>
-        <h1>Options</h1>
-        <p>Select the model options that you desire to use.</p>
+        <h1 className='config__header'>Options</h1>
+        <h4 className='config__subtitle'>Select the model options that you desire to use.</h4>
 
         <p>
-          Select a model 
-          <select name="models" onChange={handleModelChange}>
+          Select a model <br />
+          <select className='config__select' name="models" onChange={handleModelChange}>
             <option value="llama3">Llama 3</option>
             <option value="llama2">Llama 2</option>
             <option value="llama2">Llama 2</option>
@@ -56,20 +60,20 @@ function App() {
           </select>
         </p>
         <p>
-          System prompt 
-          <input type='text' placeholder='Act like a cat' onChange={handleSystemPromptChange} />
+          System prompt <br />
+          <input className='config__sysinput' type='text' placeholder='Act like a cat' onChange={handleSystemPromptChange} />
         </p>
         <p>
           Use stream? 
-          <input type='checkbox' onChange={handleStreamChange} />
+          <input className='config__streamCheckbox' type='checkbox' onChange={handleStreamChange} />
         </p>
       </section>
       <section className='chat__section'>
         <h1>Ollama Chat App</h1>
         <div dangerouslySetInnerHTML={{ __html: data }} />
       
-        <input type='text' placeholder='Why the sky is blue?' onChange={handlePromptChange} />
-        <button type='submit' onClick={handleSubmit}>Send message</button>
+        <input className='chat__input' type='text' placeholder='Why the sky is blue?' onChange={handlePromptChange} />
+        <button className='input__send' type='submit' onClick={handleSubmit}><FaPaperPlane /></button>
       </section>
     </main>
   );

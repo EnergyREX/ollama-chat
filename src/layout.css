@@ -21,15 +21,16 @@ main {
 .config__section {
     grid-column: 1/2;
 
-    border-color: black;
-    border-style: solid;
+    border: 1px solid #000;
 
-    padding: 1rem;
+    padding: 2rem;
 }
 
 .chat__section {
     grid-column: 2/4;
     padding: 2rem;
+
+    border: 1px solid #000;
 
     align-items: center;
 }
