@@ -21,3 +21,9 @@ A minimal web-UI to talk with Ollama models. This application uses React.js to c
 - Dark and Light mode
 - Save sessions
 
+### Start the project
+
+Run `npm run i` first to install all dependencies
+Run `npm run dev` to run the project. Ensure to have all models installed.
+
+**NOTE:** This project is still under development
