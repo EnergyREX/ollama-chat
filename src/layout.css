@@ -1,0 +1,35 @@
+:root {
+    font-family: Inter, sans-serif;
+    font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+  }
+  @supports (font-variation-settings: normal) {
+    :root { font-family: InterVariable, sans-serif; }
+  }
+
+body {
+    margin: 0px;
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+
+    column-gap: 1rem;
+}
+
+.config__section {
+    grid-column: 1/2;
+
+    border-color: black;
+    border-style: solid;
+
+    padding: 1rem;
+}
+
+.chat__section {
+    grid-column: 2/4;
+    padding: 2rem;
+
+    align-items: center;
+}
