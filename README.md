@@ -5,7 +5,7 @@ A minimal web-UI to talk with Ollama models. This application uses React.js to c
 
 - [React.js](https://react.dev)
 - Vanilla CSS
-- [Ollama](Ollama.com)[https://ollama.com]
+- [Ollama](https://ollama.com)
 - [Axios](https://axios-http.com/)
 
 ## System specs

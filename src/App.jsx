@@ -6,6 +6,9 @@ function App() {
   const [prompt, setPrompt] = useState('')
   const [system, setSystem] = useState('')
   const [stream, setStream] = useState(false)
+  const [data, setData] = useState([])
+
+  let response = '';
 
   const handleModelChange = (event) => {
     setModel(event.target.value)
@@ -23,10 +26,16 @@ function App() {
     setPrompt(event.target.value)
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     console.log('Submitted.');
-    ollama.generate(model, prompt, system, stream)
-  }
+    try {
+      const response = await ollama.generate(model, prompt, system, stream);
+      setData(response);
+    } catch (error) {
+      console.error('Error handling a message', error);
+      setData('Error. Press f12 to see what may happen');
+    }
+  };
 
   return (
     <main>
@@ -51,7 +60,7 @@ function App() {
       </section>
       <section>
         Ollama Chat App
-        <p>Example message</p>
+        <p>{data}</p>
       </section>
       <section>
         <input type='text' placeholder='Why the sky is blue?' onChange={handlePromptChange} />
