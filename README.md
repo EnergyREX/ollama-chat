@@ -13,18 +13,18 @@ A minimal web-UI to talk with Ollama models. This application uses React.js to c
 - Minimum have 16GB RAM.
 - Have [Ollama](https://ollama.com/download) installed.
 - Tested on AMD Ryzen 1800X and AMD Ryzen 5 7535HS.
-- Have installed Node.js in your system.
+- Have installed Node.js and NPM in your system.
 
 ###  Features and planned features
 
 - Large prompt fields
 - Markdown parsing with syntax highlighting
 - Dark and Light mode
-- Save sessions
+- Saving sessions
 
-### Start the project
+## Run
 
-- Open a new terminal in the project folder.
+- Open a new terminal in the project folder. Ensure that you have Node.js and NPM installed.
 - Run `npm run i` first to install all dependencies
 - Run `npm run dev` to run the project. Ensure to have all models installed.
 - Go to `https://localhost:5173/`

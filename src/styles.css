@@ -24,8 +24,26 @@
 .chat__input {
     width: auto;
     height: auto;
+    min-width: 100px;
+    max-height: 150px;
+    max-width: 480px;
 
     padding: 0.5rem;
+    overflow-y: scroll;
+    overflow-x: auto;
+}
+
+.user__prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  color: #161616
+}
+
+.user__prompt p {
+  padding: 0.5rem;
+  background-color: #cccccc;
+  border-radius: 10px;
 }
 
 .input__send {
@@ -35,28 +53,31 @@
 
 /* Markdown */
 
-.markdown-content {
-    font-family: Arial, sans-serif;
+.markdown {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    padding: 1rem;
+    background-color: #cccccc;
+    border-radius: 10px;
+    
+    font-family: 'Inter', sans-serif;
     line-height: 1.6;
-    color: #333;
+    color: #181818;
+
+    margin-bottom: 1rem;
   }
   
-  .markdown-content h1 {
-    font-size: 2em;
-    margin-bottom: 0.5em;
-    color: #4A90E2;
-  }
-  
-  .markdown-content p {
+  .markdown p {
     margin-bottom: 1em;
   }
   
-  .markdown-content ul {
+  .markdown ul {
     list-style-type: disc;
-    margin-left: 20px;
   }
   
-  code {
+  .markdown code {
     background-color: #161616;
     padding: 0.3rem 0.3rem 0.3rem 0.3rem;
     margin: 0.3rem 0.1rem 0.5rem 0.1rem;
@@ -64,9 +85,30 @@
     color: #fff;
   }
   
-  pre {
+  .markdown pre {
     background-color: #161616;
     padding: 1rem;
     border-radius: 4px;
     overflow-x: auto;
+  }
+
+  .markdown h1 {
+    font-size: 2rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .markdown h2 {
+    font-size: 1.525rem;
+    margin-top: 0.4rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .markdown h3 {
+    font-size: 1.325rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .markdown .language-python {
+    color: #39BAE6
   }
