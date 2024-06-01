@@ -31,7 +31,7 @@ function App() {
     setPrompt(event.target.value);
   };
 
-  const handleSubmit = async () => {
+  const handleGenerationSubmit = async () => {
     console.log('Submitted.');
     try {
       setData('')
@@ -45,6 +45,14 @@ function App() {
     }
   };
 
+  const handleChatSubmit = async () => {
+    console.log("Message sent");
+    try {
+      setChatHistory(ollama.chat(model, prompt))
+    } catch (err) {
+      console.error('Error hadling a message', error)
+    }
+  }
   return (
     <main>
       <section className='config__section'>
@@ -72,7 +80,7 @@ function App() {
         </div>
         <div>
         <input className='chat__input' type='text' placeholder='Why the sky is blue?' onChange={handlePromptChange} />
-        <button className='input__send' type='submit' onClick={handleSubmit}><FaPaperPlane /></button>
+        <button className='input__send' type='submit' onClick={handleChatSubmit }><FaPaperPlane /></button>
         </div>
       </section>
     </main>

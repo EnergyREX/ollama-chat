@@ -24,23 +24,30 @@ async function generate (model, prompt, system) {
     }
 }
 
-async function chat (model, prompt, system) {
+async function chat (model, prompt) {
     const req = {
-        "model": model,
-        "messages": [
-          {
-            "role": "user",
-            "content": prompt
-          }
-        ]
-      }
+      "model": model,
+      "messages": [
+        { "role": "user", "content": prompt }
+      ],
+      "stream": false
+    }
 
+    console.log(req);
       try {
         console.log('Loading...')
         const res = await axios.post(`${baseURL}/api/chat`, req)
-        console.log(res.data.response)
-        console.log(res.data.response);
-        return(res.data.response);
+        console.log(res.data.message.content)
+        console.log(res.data.message.role);
+
+        const message = {
+          "role": res.data.message.role,
+          "content": res.data.message.content
+        }
+
+        console.log(message);
+
+        return(message);
       }
       catch (error) {
         console.log('Error handling a request', error);
