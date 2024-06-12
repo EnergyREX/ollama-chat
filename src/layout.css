@@ -46,4 +46,7 @@ main {
     overflow-y: auto;
     height: 886px;
     max-height: 886px;
+
+    padding-left: 15rem;
+    padding-right: 15rem;
 }

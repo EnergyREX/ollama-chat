@@ -1,19 +1,34 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ollama from './services/ollama';
 import { marked } from 'marked';
 
 import Options from './components/Options';
 
 import './layout.css';
-import './styles.css'
+import './styles.css';
 import { FaPaperPlane } from 'react-icons/fa6';
 
 function App() {
   const [model, setModel] = useState('llama3');
+  const [models, setModels] = useState([]); // Cambiado a arreglo vacío
   const [prompt, setPrompt] = useState('');
   const [system, setSystem] = useState('');
   const [data, setData] = useState('');
-  const [chatHistory, setChatHistory] = useState([])
+  const [chatHistory, setChatHistory] = useState([]);
+
+  useEffect(() => {
+    ollama.getModels()
+    .then(response => {
+      setModels(response);
+    })
+    .catch(error => {
+      console.error('Error fetching models: ', error);
+    });
+  }, []);
+
+  useEffect(() => {
+    console.log('Your models: ', models);
+  }, [models]);
 
   const handleModelChange = (event) => {
     setModel(event.target.value);
@@ -23,10 +38,6 @@ function App() {
     setSystem(event.target.value);
   };
 
-  const handleStreamChange = (event) => {
-    setStream(event.target.checked);
-  };
-
   const handlePromptChange = (event) => {
     setPrompt(event.target.value);
   };
@@ -34,7 +45,7 @@ function App() {
   const handleGenerationSubmit = async () => {
     console.log('Submitted.');
     try {
-      setData('')
+      setData('');
       const response = await ollama.generate(model, prompt, system);
       const formattedResponse = response.replace(/\n/g, '\n\n');
       const markdownResponse = marked(formattedResponse);
@@ -47,12 +58,22 @@ function App() {
 
   const handleChatSubmit = async () => {
     console.log("Message sent");
+
+    let newChatHistory = [...chatHistory]; // Crea una copia del historial de chat
+    newChatHistory.push({ role: "user", content: prompt });
+
+    setChatHistory(newChatHistory);
+
     try {
-      setChatHistory(ollama.chat(model, prompt))
-    } catch (err) {
-      console.error('Error hadling a message', error)
+      const response = await ollama.chat(model, prompt, system);
+      newChatHistory.push({ role: "bot", content: response });
+      setChatHistory(newChatHistory);
+    } catch (error) {
+      console.error('Error handling a message', error);
     }
+    console.log("Chat history", chatHistory);
   }
+
   return (
     <main>
       <section className='config__section'>
@@ -62,9 +83,9 @@ function App() {
         <p>
           Select a model <br />
           <select className='config__select' name="models" onChange={handleModelChange}>
-            <option value="llama3">Llama 3</option>
-            <option value="llama2">Llama 2</option>
-            <option value="codellama">Codellama</option>
+            {Array.isArray(models) && models.map((model) => (
+              <option key={model.model} value={model.model}>{model.name}</option>
+            ))}
           </select>
         </p>
         <p>
@@ -75,12 +96,12 @@ function App() {
       <section className='chat__section'>
         <h1>Ollama Chat App</h1>
         <div className='chat__content'>
-          <div className='user__prompt'><p>{prompt}</p></div>
-          <div className='markdown' dangerouslySetInnerHTML={{ __html: data }} />
+          <div className='markdown' dangerouslySetInnerHTML={{ __html: data }}>
+          </div>
         </div>
         <div>
-        <input className='chat__input' type='text' placeholder='Why the sky is blue?' onChange={handlePromptChange} />
-        <button className='input__send' type='submit' onClick={handleChatSubmit }><FaPaperPlane /></button>
+          <input className='chat__input' type='text' placeholder='Why the sky is blue?' onChange={handlePromptChange} />
+          <button className='input__send' type='submit' onClick={handleChatSubmit}><FaPaperPlane /></button>
         </div>
       </section>
     </main>
