@@ -8,6 +8,12 @@ A minimal web-UI to talk with Ollama models. This application uses React.js to c
 - [Ollama](https://ollama.com)
 - [Axios](https://axios-http.com/)
 
+## Tools used
+
+- [**Visual Studio Code**](https://code.visualstudio.com/Download)
+- [Postman](https://www.postman.com/downloads/)
+- Microsoft Edge (To preview the application)
+
 ## System specs
 
 - Minimum have 16GB RAM.
@@ -17,10 +23,11 @@ A minimal web-UI to talk with Ollama models. This application uses React.js to c
 
 ###  Features and planned features
 
+- Chatting with Ollama
 - Large prompt fields
 - Markdown parsing with syntax highlighting
 - Dark and Light mode
-- Saving sessions
+- Saving sessions in a database.
 
 ## Run
 
@@ -29,5 +36,4 @@ A minimal web-UI to talk with Ollama models. This application uses React.js to c
 - Run `npm run dev` to run the project. Ensure to have all models installed.
 - Go to `https://localhost:5173/`
 
-**NOTE:** This project is still under development, only runs single generations 
-and some functions may don't work yet.
+**NOTE:** This project is still under development, some functions may don't work yet.

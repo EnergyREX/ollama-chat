@@ -1,19 +1,16 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import ollama from './services/ollama';
 import { marked } from 'marked';
 
-import Options from './components/Options';
-
 import './layout.css';
-import './styles.css'
+import './styles.css';
 import { FaPaperPlane } from 'react-icons/fa6';
 
 function App() {
   const [model, setModel] = useState('llama3');
   const [prompt, setPrompt] = useState('');
   const [system, setSystem] = useState('');
-  const [data, setData] = useState('');
-  const [chatHistory, setChatHistory] = useState([])
+  const [chatHistory, setChatHistory] = useState([]);
 
   const handleModelChange = (event) => {
     setModel(event.target.value);
@@ -23,10 +20,6 @@ function App() {
     setSystem(event.target.value);
   };
 
-  const handleStreamChange = (event) => {
-    setStream(event.target.checked);
-  };
-
   const handlePromptChange = (event) => {
     setPrompt(event.target.value);
   };
@@ -34,25 +27,36 @@ function App() {
   const handleGenerationSubmit = async () => {
     console.log('Submitted.');
     try {
-      setData('')
       const response = await ollama.generate(model, prompt, system);
       const formattedResponse = response.replace(/\n/g, '\n\n');
       const markdownResponse = marked(formattedResponse);
-      setData(markdownResponse);
+      setChatHistory([{ role: 'system', content: markdownResponse }]);
     } catch (error) {
       console.error('Error handling a message', error);
-      setData('Error. Press f12 to see what may happen');
+      setChatHistory([{ role: 'system', content: 'Error. Press f12 to see what may happen' }]);
     }
   };
 
   const handleChatSubmit = async () => {
     console.log("Message sent");
+
+    const newUserMessage = { "role": "user", "content": prompt };
+    const updatedChatHistory = [...chatHistory, newUserMessage];
+
     try {
-      setChatHistory(ollama.chat(model, prompt))
+      const response = await ollama.chat(model, prompt);
+      const newAssistantMessage = {
+        "role": response.role,
+        "content": response.content
+      };
+
+      setChatHistory([...updatedChatHistory, newAssistantMessage]);
+
     } catch (err) {
-      console.error('Error hadling a message', error)
+      console.error('Error handling a message', err);
     }
-  }
+  };
+
   return (
     <main>
       <section className='config__section'>
@@ -72,15 +76,19 @@ function App() {
           <input className='config__sysinput' type='text' placeholder='Act like a cat' onChange={handleSystemPromptChange} />
         </p>
       </section>
+      
       <section className='chat__section'>
         <h1>Ollama Chat App</h1>
         <div className='chat__content'>
-          <div className='user__prompt'><p>{prompt}</p></div>
-          <div className='markdown' dangerouslySetInnerHTML={{ __html: data }} />
+          {chatHistory.map((msg, index) => (
+            <div key={index} className={`message ${msg.role}`}>
+              <div dangerouslySetInnerHTML={{ __html: marked(msg.content) }}></div>
+            </div>
+          ))}
         </div>
         <div>
-        <input className='chat__input' type='text' placeholder='Why the sky is blue?' onChange={handlePromptChange} />
-        <button className='input__send' type='submit' onClick={handleChatSubmit }><FaPaperPlane /></button>
+          <input className='chat__input' type='text' placeholder='Why the sky is blue?' onChange={handlePromptChange} />
+          <button className='input__send' type='submit' onClick={handleChatSubmit}><FaPaperPlane /></button>
         </div>
       </section>
     </main>
