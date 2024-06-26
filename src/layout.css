@@ -47,6 +47,14 @@ main {
     height: 886px;
     max-height: 886px;
 
-    padding-left: 15rem;
-    padding-right: 15rem;
+    padding-left: 10rem;
+    padding-right: 10rem;
+}
+
+.chat__content .message {
+    display: inline ;
+    font-weight: 400;
+    margin-top: 1rem;
+    margin-right: 1rem;
+    background-color: #b1b1b1;
 }
