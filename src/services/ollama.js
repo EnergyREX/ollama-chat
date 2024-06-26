@@ -2,6 +2,17 @@ import axios from "axios"
 
 const baseURL = 'http://localhost:11434'
 
+function getModels() {
+  const url = `${baseURL}/api/tags`;
+  return axios.get(url).then(response => {
+      console.log(response.data);
+      return response.data;
+  }).catch(error => {
+      console.error('Error fetching data:', error);
+  });
+}
+
+
 async function generate (model, prompt, system) {
     const req = {
         "model": model,
@@ -45,8 +56,6 @@ async function chat (model, prompt) {
           "content": res.data.message.content
         }
 
-        console.log(message);
-
         return(message);
       }
       catch (error) {
@@ -56,4 +65,4 @@ async function chat (model, prompt) {
       }
 }
 
-export default { generate, chat }
+export default { getModels, generate, chat }
