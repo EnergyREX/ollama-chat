@@ -36,4 +36,4 @@ A minimal web-UI to talk with Ollama models. This application uses React.js to c
 - Run `npm run dev` to run the project. Ensure to have all models installed.
 - Go to `https://localhost:5173/`
 
-**NOTE:** This project is still under development, some functions may don't work yet.
+**NOTE:** This project is still under development, some functions may don't work yet, you can also use this project for your own projects. But remember, this is just an experimental project.

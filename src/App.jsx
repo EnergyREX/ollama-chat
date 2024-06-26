@@ -8,7 +8,6 @@ import { FaPaperPlane } from 'react-icons/fa6';
 
 function App() {
   const [model, setModel] = useState('llama3');
-  const [models, setModels] = useState([]); // Cambiado a arreglo vacío
   const [prompt, setPrompt] = useState('');
   const [system, setSystem] = useState('');
   const [chatHistory, setChatHistory] = useState([]);
@@ -19,10 +18,6 @@ function App() {
 
   const handleSystemPromptChange = (event) => {
     setSystem(event.target.value);
-  };
-
-  const handleStreamChange = (event) => {
-    setStream(event.target.checked);
   };
 
   const handlePromptChange = (event) => {
@@ -71,9 +66,9 @@ function App() {
         <p>
           Select a model <br />
           <select className='config__select' name="models" onChange={handleModelChange}>
-            {Array.isArray(models) && models.map((model) => (
-              <option key={model.model} value={model.model}>{model.name}</option>
-            ))}
+            <option value="llama3">Llama 3</option>
+            <option value="llama2">Llama 2</option>
+            <option value="codellama">Codellama</option>
           </select>
         </p>
         <p>
@@ -85,12 +80,15 @@ function App() {
       <section className='chat__section'>
         <h1>Ollama Chat App</h1>
         <div className='chat__content'>
-          <div className='user__prompt'><p>{prompt}</p></div>
-          <div className='markdown' dangerouslySetInnerHTML={{ __html: data }} />
+          {chatHistory.map((msg, index) => (
+            <div key={index} className={`message ${msg.role}`}>
+              <div dangerouslySetInnerHTML={{ __html: marked(msg.content) }}></div>
+            </div>
+          ))}
         </div>
         <div>
-        <input className='chat__input' type='text' placeholder='Why the sky is blue?' onChange={handlePromptChange} />
-        <button className='input__send' type='submit' onClick={handleChatSubmit }><FaPaperPlane /></button>
+          <input className='chat__input' type='text' placeholder='Why the sky is blue?' onChange={handlePromptChange} />
+          <button className='input__send' type='submit' onClick={handleChatSubmit}><FaPaperPlane /></button>
         </div>
       </section>
     </main>
